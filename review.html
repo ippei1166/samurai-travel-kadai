@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>レビュー入力と評価</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:if="${message}">
+        <p th:text="${message}">メッセージがここに表示されます</p>
+    </div>
+
+    <form th:action="@{/submitReview}" method="post">
+        <div>
+            <label for="name">名前:</label>
+            <input type="text" id="name" name="name" th:value="${reviewForm.name}" required>
+        </div>
+        <div>
+            <label for="reviewText">レビュー内容:</label>
+            <textarea id="reviewText" name="reviewText" required th:text="${reviewForm.reviewText}"></textarea>
+        </div>
+        <label for="starRating">星の評価 (1-5):</label>
+        <input type="hidden" id="starRating" name="starRating" required>
+        <div id="star-container">
+            <span class="star" onclick="setRating(1)">&#9734;</span>
+            <span class="star" onclick="setRating(2)">&#9734;</span>
+            <span class="star" onclick="setRating(3)">&#9734;</span>
+            <span class="star" onclick="setRating(4)">&#9734;</span>
+            <span class="star" onclick="setRating(5)">&#9734;</span>
+        </div>
+        <script>
+            function setRating(rating) {
+                const stars = document.querySelectorAll('#star-container .star');
+                const starRatingInput = document.getElementById('starRating');
+                starRatingInput.value = rating; 
+
+                stars.forEach((star, index) => {
+                    star.innerHTML = index < rating ? '&#9733;' : '&#9734;'; // 塗りつぶされた星 or 空の星
+                });
+            }
+        </script>
+      
+    <!-- フォームの内容 -->
+    <button type="submit">レビューを登録</button>
+
+    </form>
+</body>
+</html>

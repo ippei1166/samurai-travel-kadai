@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レビュー一覧</title>
+</head>
+<body>
+	<form th:action="@{/house/show}" method="post">
+    <header>
+        <h1>レビュー一覧</h1>
+    </header>
+    <main>
+        <section>
+            <h2>最新のレビュー</h2>
+            <div class="review-list">
+               
+                <div class="review">
+                    <h3>山田太郎</h3>
+                    <p>非常に良い！</p>
+                    <p>星の評価: 5</p>
+                </div>
+                <div class="review">
+                    <h3>鈴木花子</h3>
+                    <p>満足です。</p>
+                    <p>星の評価: 4</p>
+                </div>
+               
+            </div>
+        </section>
+        <section>
+            <a href="/review" class="button">新しいレビューを追加</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 レビューサイト</p>
+    </footer>
+</body>
+</html>
